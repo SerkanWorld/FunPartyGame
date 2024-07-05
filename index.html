@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noe</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+    <input type="text" id="customText" placeholder="Gib hier deinen Text ein">
+    <button id="saveTextButton">Text speichern</button>
+    <button id="displayRandomTextButton">Zufallstext anzeigen</button>
+    <p id="customResult"></p>
+
+    <script>
+        const customText = document.getElementById('customText');
+        const saveTextButton = document.getElementById('saveTextButton');
+        const displayRandomTextButton = document.getElementById('displayRandomTextButton');
+        const customResultParagraph = document.getElementById('customResult');
+        const savedTexts = [];
+
+        // Funktion zum Speichern des eingegebenen Texts
+        function saveCustomText() {
+            const enteredText = customText.value;
+            savedTexts.push(enteredText);
+            customText.value = ''; // Textfeld leeren
+        }
+
+        // Funktion zum Anzeigen eines zufälligen gespeicherten Texts
+        function displayRandomText() {
+            if (savedTexts.length > 0) {
+                const randomIndex = Math.floor(Math.random() * savedTexts.length);
+                customResultParagraph.textContent = savedTexts[randomIndex];
+            } else {
+                customResultParagraph.textContent = 'Kein gespeicherter Text vorhanden.';
+            }
+        }
+
+        saveTextButton.addEventListener('click', saveCustomText);
+        displayRandomTextButton.addEventListener('click', displayRandomText);
+    </script>
+</body>
+</html>
